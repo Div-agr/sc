@@ -1,15 +1,40 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function BookingDays() {
+  const navigate = useNavigate();
+
+  const handleDayClick = async (day) => {
+    try {
+      // Send the selected day to the backend
+      const response = await fetch('/api/selected-day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ day }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send day to the backend');
+      }
+
+      // Navigate to /userdashboard/halls on successful submission
+    } catch (error) {
+      console.error('Error sending day to backend:', error);
+    }
+    navigate('/userdashboard/halls');
+  };
+
   return (
     <div className="booking-container">
       <main className="main-content">
         <div className="day-buttons">
-          <button>MONDAY</button>
-          <button>TUESDAY</button>
-          <button>WEDNESDAY</button>
-          <button>THURSDAY</button>
-          <button>FRIDAY</button>
+          {['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY'].map((day) => (
+            <button key={day} onClick={() => handleDayClick(day)}>
+              {day}
+            </button>
+          ))}
         </div>
         <p className="contact-text">
           For Weekends Contact: <a href="mailto:scient@nitt.edu">scient@nitt.edu</a>

@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function BookingSlots() {
   const slots = generateSlots();
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleSlotClick = (slotIndex) => {
+    // Navigate to the booking form with slot information
+    navigate(`/userdashboard/bookingform`, { state: { slotIndex } });
+  };
 
   return (
     <div style={styles.container}>
@@ -9,7 +16,11 @@ function BookingSlots() {
         <h2 style={styles.heading}>ROOM BOOKING</h2>
         <div style={styles.slotsContainer}>
           {slots.map((slot, index) => (
-            <div key={index} style={styles.slot}>
+            <div
+              key={index}
+              style={styles.slot}
+              onClick={() => handleSlotClick(index + 1)} // Pass slot index
+            >
               SLOT: {index + 1} <br />
               {slot}
             </div>
@@ -70,7 +81,7 @@ const styles = {
     borderRadius: '10px',
     width: '100%', 
     maxWidth: '1200px',
-    boxSizing: 'border-box', // Include padding and border in the width/height calculations
+    boxSizing: 'border-box',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
   },
   heading: {
@@ -80,7 +91,7 @@ const styles = {
   },
   slotsContainer: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', // Auto-adjust columns
+    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
     gap: '10px',
     width: '100%',
     boxSizing: 'border-box',
@@ -95,6 +106,10 @@ const styles = {
     textAlign: 'center',
     cursor: 'pointer',
     boxSizing: 'border-box',
+    transition: 'transform 0.2s',
+  },
+  slotHover: {
+    transform: 'scale(1.05)',
   },
   contactText: {
     marginTop: '20px',

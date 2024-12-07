@@ -8,12 +8,15 @@ import ProjectSection from "./pages/ProjectSection";
 import Contact from "./pages/Contacts";
 import Bookings from "./pages/RoomBooking";
 import Dashboard_booking from "./pages/Dashboard_booking";
+import UserDashboard_booking from "./pages/UserDashboard_booking";
 import History from "./pages/History";
+import UserHistoryPage from "./pages/UserHistoryPage";
 import Requests from "./pages/Requests";
 import Profile from "./pages/Profile";
 import Halls from "./pages/Halls";
 import Slots from "./pages/Slots";
 import Days from "./pages/Days";
+import Members from "./pages/Members";
 import OpenHouse from "./pages/OpenHouse";
 import Inventory from "./pages/Inventory";
 import ESummit from "./pages/ESummit";
@@ -45,15 +48,20 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/dashboard" element={<Dashboard_booking />} />
-        <Route path="/dashboard/requests" element={<Requests />} />
-        <Route path="/dashboard/history" element={<History />} />
-        <Route path="/dashboard/profile" element={<Profile />} />
-        <Route path="/dashboard/halls" element={<Halls/>} />
-        <Route path="/dashboard/slots" element={<Slots/>} />
-        <Route path="/dashboard/days" element={<Days/>} />
+        {/* The below given routes belong to admin*/}
+        <Route path="/admindashboard" element={<Dashboard_booking />} />
+        <Route path="/admindashboard/requests" element={<Requests />} />
+        <Route path="/admindashboard/history" element={<History />} />
+        <Route path="/admindashboard/profile" element={<Profile />} />
+        {/* The below given routes belong to user*/}
+        <Route path="/userdashboard" element={<UserDashboard_booking />}/>
+        <Route path="/userdashboard/history" element={<UserHistoryPage/>}/>
+        <Route path="/userdashboard/halls" element={<Halls/>} />
+        <Route path="/userdashboard/slots" element={<Slots/>} />
+        <Route path="/userdashboard/days" element={<Days/>} />
+        <Route path="/userdashboard/bookingform" element={<Members/>}/>
       </Routes>
-      {/*the above routes kept separately bcz the above requires no navbar*/}
+      {/*the above routes kept separately bcz they require no navbar*/}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

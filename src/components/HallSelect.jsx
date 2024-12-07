@@ -1,17 +1,33 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function HallSelect() {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/userdashboard/slots');
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.bookingContainer}>
         <h2 style={styles.heading}>ROOM BOOKING</h2>
-        <div style={styles.hallButtonLarge}>HALL - C1</div>
+        <div style={styles.hallButtonLarge} onClick={handleNavigation}>
+          HALL - C1
+        </div>
         <div style={styles.hallButtonRow}>
-          <div style={styles.hallButtonSmall}>HALL - C2</div>
-          <div style={styles.hallButtonSmall}>HALL - C3</div>
+          <div style={styles.hallButtonSmall} onClick={handleNavigation}>
+            HALL - C2
+          </div>
+          <div style={styles.hallButtonSmall} onClick={handleNavigation}>
+            HALL - C3
+          </div>
         </div>
         <p style={styles.contactText}>
-          For Weekends Contact: <a href="mailto:scient@nitt.edu" style={styles.contactLink}>scient@nitt.edu</a>
+          For Weekends Contact:{' '}
+          <a href="mailto:scient@nitt.edu" style={styles.contactLink}>
+            scient@nitt.edu
+          </a>
         </p>
       </div>
     </div>
@@ -52,6 +68,8 @@ const styles = {
     borderRadius: '10px',
     marginBottom: '20px',
     cursor: 'pointer',
+    textAlign: 'center',
+    transition: 'background-color 0.3s',
   },
   hallButtonRow: {
     display: 'flex',
@@ -68,6 +86,7 @@ const styles = {
     borderRadius: '10px',
     cursor: 'pointer',
     textAlign: 'center',
+    transition: 'background-color 0.3s',
   },
   contactText: {
     marginTop: '20px',

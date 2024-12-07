@@ -7,7 +7,7 @@ const Roombook = () => {
 
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent form submission
-    window.open('/dashboard', '_blank'); // Open /dashboard in a new tab
+    window.open('/admindashboard', '_blank'); // Open /dashboard in a new tab
   };
 
   return (
